@@ -1,0 +1,12 @@
+{
+  "imports": {
+    "hono": "npm:hono"
+  },
+  "tasks": {
+    "start": "deno serve main.ts"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  }
+}
