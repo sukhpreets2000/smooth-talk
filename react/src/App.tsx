@@ -3,7 +3,7 @@ function App() {
 
   return (
     <>
-      <h1>hello React</h1>
+      <h1 className='bg-lime-400 text-center p-4 '>hello React</h1>
     </>
   )
 }
