@@ -1,9 +1,16 @@
 {
   "imports": {
-    "hono": "npm:hono"
+    "hono": "npm:hono",
+    "drizzle-orm": "npm:drizzle-orm",
+    "drizzle-kit": "npm:drizzle-kit"
   },
   "tasks": {
-    "start": "deno serve main.ts"
+    "start": "deno serve --port 8787 ./src/main.ts",
+    "setup": "deno cache --node-modules-dir npm:drizzle-orm npm:drizzle-kit npm:drizzle-orm/sqlite-core npm:@libsql/client",
+    "db:generate": "deno run -A npm:drizzle-kit generate",
+    "db:migrate": "deno run -A npm:drizzle-kit migrate",
+    "db:push": "deno run -A npm:drizzle-kit push",
+    "studio": "deno run -A npm:drizzle-kit studio"
   },
   "compilerOptions": {
     "jsx": "precompile",
