@@ -1,5 +1,6 @@
 import { Hono } from 'hono';
 import usersRoute from "./routes/users.route.ts";
+import authRoute from "./routes/auth.routes.ts";
 
 const app = new Hono()
 
@@ -10,6 +11,7 @@ app.get('/', (c) => {
 })
 
 app.route('/user', usersRoute)
+app.route("/auth", authRoute)
 
 
 export default app
