@@ -1,12 +1,9 @@
 import { Lucia } from "npm:lucia"
-import { LibSQLAdapter } from "npm:@lucia-auth/adapter-sqlite"
+import { DrizzleSQLiteAdapter } from "npm:@lucia-auth/adapter-drizzle"
 import { db } from "../index.ts";
-import { SelectUser } from "../schema.ts";
+import { SelectUser, sessionsTable, usersTable } from "../schema.ts";
 
-const adapter = new LibSQLAdapter(db, {
-    user: "user",
-    session: "session"
-})
+export const adapter = new DrizzleSQLiteAdapter(db, sessionsTable, usersTable);
 
 export const lucia = new Lucia(adapter, {
     sessionCookie: {

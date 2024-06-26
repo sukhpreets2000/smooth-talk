@@ -1,6 +1,6 @@
 import { z } from 'npm:zod';
 import { Hono } from 'npm:hono';
-import { Scrypt } from 'npm:lucia';
+import { Scrypt, generateId } from 'npm:lucia';
 import { zValidator } from 'npm:@hono/zod-validator';
 
 import { lucia } from '../db/lib/auth.ts';
@@ -26,7 +26,7 @@ authRouter.post(
             return c.json({ error: 'Invalid email or password.' }, 400);
         }
 
-        const validPassword = await new Scrypt().verify(user.password, password);
+        const validPassword = await new Scrypt().verify(user.password_hash, password);
         if (!validPassword) {
             return c.json({ error: 'Invalid email or password.' }, 400);
         }
@@ -36,7 +36,7 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect('/posts');
+        return c.redirect('/dashboard');
     }
 );
 
@@ -59,20 +59,24 @@ authRouter.post(
 
         const passwordHash = await new Scrypt().hash(password);
 
+        const userId = generateId(15);
+
         const user = await createUser({
+            id: userId,
+            user_name: email.split('@')[0],
             email,
-            password: passwordHash,
+            password_hash: passwordHash,
         });
         if (!user) {
             return c.json({ error: 'An error occurred during sign up.' }, 500);
         }
 
-        const session = await lucia.createSession(user.id, {});
+        const session = await lucia.createSession(userId, {});
         const cookie = lucia.createSessionCookie(session.id);
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect('/posts');
+        return c.redirect('/dashboard');
     }
 );
 
