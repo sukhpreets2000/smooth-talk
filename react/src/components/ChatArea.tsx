@@ -118,14 +118,14 @@ const ChatArea = () => {
                             <div>
                                 <h1 className="text-white text-xl">Coffee Nerds</h1>
                             </div>
-                            <div className="flex gap-7">
+                            <div className="flex gap-4">
                                 <CircleAlert className="cursor-pointer text-gray-600 hover:text-gray-300 duration-300" />
                                 <Settings className="cursor-pointer text-gray-600 hover:text-gray-300 duration-300" />
                                 <EllipsisVertical className="cursor-pointer text-gray-600 hover:text-gray-300 duration-300" />
                             </div>
                         </div>
                     </div>
-                    <div className="p-7 overflow-hidden">
+                    <div className="p-7 overflow-y-scroll h-[70vh]">
                         <div className="border-2 border-lime-800 w-fit px-5 py-2 rounded ml-auto">
                             <h1 className="text-slate-400">hello</h1>
                         </div>
