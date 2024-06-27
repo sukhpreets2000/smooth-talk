@@ -1,5 +1,5 @@
-import type { Env } from "npm:hono";
-import type { User, Session } from "npm:lucia";
+import type { Env } from "hono";
+import type { User, Session } from "lucia";
 
 export interface Context extends Env {
     Variables: {

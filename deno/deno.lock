@@ -713,9 +713,12 @@
   },
   "workspace": {
     "dependencies": [
+      "npm:@hono/zod-validator",
       "npm:drizzle-kit",
       "npm:drizzle-orm",
-      "npm:hono"
+      "npm:hono",
+      "npm:lucia",
+      "npm:zod"
     ]
   }
 }

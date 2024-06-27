@@ -1,4 +1,4 @@
-import { eq } from "npm:drizzle-orm";
+import { eq } from "drizzle-orm";
 import { db } from "../db/index.ts";
 import { InsertUser, usersTable, SelectUser } from "../db/schema.ts";
 

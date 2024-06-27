@@ -1,7 +1,7 @@
-import { z } from 'npm:zod';
-import { Hono } from 'npm:hono';
-import { Scrypt, generateId } from 'npm:lucia';
-import { zValidator } from 'npm:@hono/zod-validator';
+import { z } from 'zod';
+import { Hono } from 'hono';
+import { Scrypt, generateId } from 'lucia';
+import { zValidator } from '@hono/zod-validator';
 
 import { lucia } from '../db/lib/auth.ts';
 import { Context } from "../context.ts";

@@ -2,7 +2,11 @@
   "imports": {
     "hono": "npm:hono",
     "drizzle-orm": "npm:drizzle-orm",
-    "drizzle-kit": "npm:drizzle-kit"
+    "drizzle-kit": "npm:drizzle-kit",
+    "lucia": "npm:lucia",
+    "zod": "npm:zod",
+    "@hono/zod-validator": "npm:@hono/zod-validator",
+    "@lucia-auth": "npm:@lucia-auth"
   },
   "tasks": {
     "start": "deno serve --port 8787 ./src/main.ts",
@@ -14,7 +18,7 @@
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "npm:hono/jsx"
   },
   "deploy": {
     "project": "cfd068e2-3631-4043-aa80-519b1aa16a31",
