@@ -1,10 +1,12 @@
-import './App.css'
-import ChatArea from './components/ChatArea'
+// import ChatArea from './components/ChatArea'
+import SignUpPage from './pages/SignUpPage';
+import './App.css';
 function App() {
 
   return (
     <>
-      <ChatArea />
+      {/* <ChatArea /> */}
+      <SignUpPage />
     </>
   )
 }
