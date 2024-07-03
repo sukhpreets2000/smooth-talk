@@ -1,11 +1,72 @@
-<div class="st-login-main-container flex items-center justify-center container mx-auto w-full bg-black h-lvh ">
-    <div
+<!-- <div class="st-login-main-container flex items-center justify-center container mx-auto w-full  h-lvh ">
+    <div style="border-radius: 30px"
         class="st-login-child-container flex items-center justify-between rounded-lg container w-[90%] h-[90%] bg-lime-300">
         <div class="container w-8/12 m-5 h-[90%] rounded-xl bg-black ">
 
         </div>
-        <div class="container w-8/12 m-5 h-[90%] rounded-xl  bg-white">
+        <div class="container w-8/12 m-5 h-[90%] rounded-xl  bg-white" style="border-radius: 30px;">
+            <div class="st-form-heading">
+                <h1 class="text-2xl">Welcome Back!</h1>
+                <span class="text-sm">Sign in to your account</span>
+            </div>
 
+            <div class="st-form-container">
+                <input type="text" class="form-input">
+                <input type="text" class="form-input">
+                <input type="text" class="form-input">
+
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+<div class="w-full h-screen bg-b flex items-center justify-center">
+    <div class="container mx-auto border-2 border-slate-50 rounded-xl my-10 overflow-clip">
+        <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+            <div class="overflow-clip rounded-md h-full w-full box1">
+                <!-- <img class="object-cover bg-center" src="../../../assets/images/smooth_talk_dp.jpg" /> -->
+            </div>
+            <div class="bg-white rounded-xl p-14">
+                <h1 class="text-3xl mb-3">Welcome back</h1>
+                <p>Sign in to your account</p>
+                <div
+                    class="border-slate-100 border-[1px] border-amber-950	 p-3 mt-3 cursor-pointer hover:bg-gray-200 hover:border-black duration-300 rounded-xl">
+                    <div class="flex items-center justify-center gap-4">
+                        <i class="fa-brands fa-google"></i>
+                        <p>Continue with Google</p>
+                    </div>
+                </div>
+                <div class="relative m-5">
+                    <div class="absolute inset-0 flex items-center">
+                        <div class="w-full border-t border-slate-300"></div>
+                    </div>
+                    <div class="relative flex justify-center top-[-2px]">
+                        <span class="px-2 bg-white">or</span>
+                    </div>
+                </div>
+                <form>
+                    <div class="my-2">
+                        <label class="w-full" htmlFor="email">Email</label>
+                        <input placeholder="you@example.com" id="email"
+                            class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                    </div>
+                    <div class="my-2">
+                        <div class="flex items-center justify-end">
+                            <label class="w-full" htmlFor="password">password</label>
+                            <p class="w-full text-end cursor-pointer">Forgot Password?</p>
+                        </div>
+                        <input placeholder="password" type="password" id="password"
+                            class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                    </div>
+                    <button
+                        class="w-full my-3 bg-[#593211] text-white font-semibold hover:bg-[#a9753d] duration-300 px-4 py-3 rounded-md">Sign
+                        In</button>
+                    <div class="text-center my-4">
+                        <p>Don't have an account? <span>Sign Up Now</span></p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
