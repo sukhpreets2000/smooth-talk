@@ -36,7 +36,7 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect('/dashboard');
+        return c.redirect('/');
     }
 );
 
@@ -92,5 +92,16 @@ authRouter.post('/logout', async (c) => {
 
     return c.redirect('/');
 });
+
+authRouter.get("/me", (c) => {
+    const session = c.get('session')
+    const user = c.get('user')
+
+    if (!session || !user) {
+        return c.redirect('/login')
+    }
+
+    return c.json({ message: "success", user, session })
+})
 
 export default authRouter;

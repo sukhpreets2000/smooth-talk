@@ -1,11 +1,12 @@
 import { Hono } from 'hono';
+import { cors } from "hono/cors"
+
 import usersRoute from "./routes/users.route.ts";
 import authRoute from "./routes/auth.routes.ts";
 
-const app = new Hono()
+const app = new Hono().basePath('/api')
 
-app.basePath('/api')
-
+app.use('/*', cors({ origin: '*' }))
 app.get('/', (c) => {
   return c.text('Hello Hono!')
 })
