@@ -1,12 +1,61 @@
+import { Link } from "react-router-dom";
 import bgImg from "../../public/bgImg.jpg";
+import { useState } from "react";
+
+
+
 const SignInPage = () => {
+
+    const [inputfield, setInputField] = useState<{
+        email: string,
+        password: string
+    }>({
+        email: "",
+        password: ""
+    })
+
+    const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setInputField((preval) => {
+            return {
+                ...preval,
+                [name]: value,
+            }
+        })
+    }
+    const FormHandler = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(inputfield)
+        const formData = new FormData();
+        formData.append("email", inputfield.email),
+            formData.append("password", inputfield.password)
+
+        // fetch("http://192.168.1.3:8787/api/auth/signup", {
+        //     method: "POST",
+        //     body: formData
+        // }).then((res) => {
+        //     console.log(res)
+        // })
+
+        // fetch("http://192.168.1.3:8787/api/auth/login", {
+        //     method: "POST",
+        //     body: formData
+        // }).then((res) => {
+        //     console.log(res)
+        // })
+
+        fetch("http://192.168.1.3:8787/api/auth/me",{
+            // credentials:"include"
+        }).then((res)=>res.json()).then(result=>console.log("result",result))
+    }
+
     return (
         <>
-            <div className="w-full min-h-[100svh] bg-gray-800 flex items-center justify-center">
+            <div className="w-full h-screen bg-gray-800 flex items-center justify-center">
                 <div className="mx-auto max-w-[min(1024px,100%)] my-4 rounded-xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 p-6">
                         <div className="hidden md:flex">
-                            <img src={bgImg} alt="backGround" className="h-full object-cover"/>
+                            <img src={bgImg} alt="backGround" className="h-full object-cover" />
                         </div>
                         <div className="bg-white p-10">
                             <h1 className="text-3xl mb-3">Welcome back</h1>
@@ -25,21 +74,21 @@ const SignInPage = () => {
                                     <span className="px-2 bg-white">or</span>
                                 </div>
                             </div>
-                            <form>
+                            <form onSubmit={FormHandler}>
                                 <div className="my-2">
                                     <label className="w-full" htmlFor="email">Email</label>
-                                    <input placeholder="you@example.com" id="email" className="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                                    <input placeholder="you@example.com" id="email" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="email" onChange={InputHandler} value={inputfield.email} />
                                 </div>
                                 <div className="my-2">
                                     <div className="flex items-center justify-end">
                                         <label className="w-full" htmlFor="password">password</label>
                                         <p className="w-full text-end cursor-pointer">Forgot Password?</p>
                                     </div>
-                                    <input placeholder="password" type="password" id="password" className="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                                    <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} />
                                 </div>
                                 <button className="w-full my-3 bg-[#72e3ad] hover:bg-[#62c897] duration-300 px-4 py-3 rounded-md">Sign In</button>
                                 <div className="text-center my-4">
-                                    <p>Don't have an account? <span>Sign Up Now</span></p>
+                                    <Link to="/signup" className="text-slate-400 hover:text-slate-600 duration-300">Don't have an account? <span>Sign Up Now</span></Link>
                                 </div>
                             </form>
                         </div>
