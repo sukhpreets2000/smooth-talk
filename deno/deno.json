@@ -2,11 +2,15 @@
   "imports": {
     "hono": "npm:hono",
     "drizzle-orm": "npm:drizzle-orm",
-    "drizzle-kit": "npm:drizzle-kit"
+    "drizzle-kit": "npm:drizzle-kit",
+    "lucia": "npm:lucia",
+    "zod": "npm:zod",
+    "@hono/zod-validator": "npm:@hono/zod-validator",
+    "@lucia-auth": "npm:@lucia-auth"
   },
   "tasks": {
     "start": "deno serve --port 8787 ./src/main.ts",
-    "setup": "deno cache --node-modules-dir npm:drizzle-orm npm:drizzle-kit npm:drizzle-orm/sqlite-core npm:@libsql/client",
+    "setup": "deno cache --node-modules-dir npm:drizzle-orm npm:drizzle-kit npm:drizzle-orm/sqlite-core npm:@libsql/client npm:lucia",
     "db:generate": "deno run -A npm:drizzle-kit generate",
     "db:migrate": "deno run -A npm:drizzle-kit migrate",
     "db:push": "deno run -A npm:drizzle-kit push",
@@ -14,7 +18,7 @@
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "npm:hono/jsx"
   },
   "deploy": {
     "project": "cfd068e2-3631-4043-aa80-519b1aa16a31",
