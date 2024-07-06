@@ -1,5 +1,5 @@
-import { createClient } from "https://esm.sh/@libsql/client@0.6.0/web";
-import { config } from 'https://deno.land/x/dotenv/mod.ts';
+import { createClient } from "npm:@libsql/client";
+import { config } from 'https://deno.land/x/dotenv@v3.2.0/mod.ts';
 import { drizzle } from "drizzle-orm/libsql"
 import * as schema from './schema.ts';
 
