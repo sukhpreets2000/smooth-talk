@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import bgImg from "../../public/bgImg.jpg";
 import { useState } from "react";
-
-
+import { API_BASE_URL } from "../utils/Constants";
 
 const SignInPage = () => {
 
@@ -37,27 +36,26 @@ const SignInPage = () => {
         //     console.log(res)
         // })
 
-        // fetch("http://192.168.1.3:8787/api/auth/login", {
-        //     method: "POST",
-        //     body: formData
-        // }).then((res) => {
-        //     console.log(res)
-        // })
+        fetch(API_BASE_URL + "/auth/login", {
+            method: "POST",
+            body: formData
+        }).then((res) => {
+            console.log(res)
+        })
 
-        fetch("http://192.168.1.3:8787/api/auth/me",{
-            // credentials:"include"
-        }).then((res)=>res.json()).then(result=>console.log("result",result))
+        // fetch("http://192.168.1.3:8787/api/auth/me",{
+        //     // credentials:"include"
+        // }).then((res)=>res.json()).then(result=>console.log("result",result))
     }
 
     return (
         <>
-            <div className="w-full h-screen bg-gray-800 flex items-center justify-center">
-                <div className="mx-auto max-w-[min(1024px,100%)] my-4 rounded-xl">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 p-6">
-                        <div className="hidden md:flex">
+            <div className="w-full min-h-[100svh] bg-gray-800 flex items-center justify-center py-[var(--top-padding)]">
+                <div className="mx-auto max-w-[min(1124px,100%)] rounded-xl flex relative h-full">
+                        <div className="hidden md:flex sticky top-4 h-[calc(100svh-2*var(--top-padding))] flex-1">
                             <img src={bgImg} alt="backGround" className="h-full object-cover" />
                         </div>
-                        <div className="bg-white p-10">
+                        <div className="bg-white p-10 h-auto flex-1">
                             <h1 className="text-3xl mb-3">Welcome back</h1>
                             <p>Sign in to your account</p>
                             <div className="border-slate-100 border-[1px] p-3 mt-3 cursor-pointer hover:bg-gray-200 hover:border-black duration-300 rounded-xl">
@@ -92,7 +90,6 @@ const SignInPage = () => {
                                 </div>
                             </form>
                         </div>
-                    </div>
                 </div>
             </div>
         </>
