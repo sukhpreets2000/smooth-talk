@@ -20,6 +20,7 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
+        const origin = c.req.header("Origin")
 
         const user = await getUser({ email });
         if (user === null) {
@@ -36,7 +37,7 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect('/');
+        return c.redirect(origin+'/');
     }
 );
 
@@ -51,6 +52,7 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
+        const origin = c.req.header("Origin")
 
         const existingUser = await getUser({ email });
         if (existingUser) {
@@ -76,12 +78,13 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect('/dashboard');
+        return c.redirect(origin+'/');
     }
 );
 
 authRouter.post('/logout', async (c) => {
     const session = c.get('session');
+    const origin = c.req.header("Origin")
     if (session) {
         await lucia.invalidateSession(session.id);
     }
@@ -90,7 +93,7 @@ authRouter.post('/logout', async (c) => {
 
     c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-    return c.redirect('/');
+    return c.redirect(origin+'/');
 });
 
 authRouter.get("/me", (c) => {
