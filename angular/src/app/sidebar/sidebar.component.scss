@@ -1,0 +1,111 @@
+.st-main-container {
+  display: flex;
+  .sidebar-container {
+    width: 100px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.809);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    .main-icons {
+      width: 45px;
+      height: 45px;
+      background-color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .sidebar-menu {
+      margin-top: 20px;
+      .icons {
+        width: 35px;
+        height: 35px;
+        background-color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+      }
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 50px;
+    }
+  }
+
+  .st-contacts-list-container {
+    width: 300px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.809);
+    border-left: 2px solid rgba(255, 255, 255, 0.346);
+    border-right: 2px solid rgba(255, 255, 255, 0.346);
+
+    padding: 0px 20px;
+
+    .st-contacts-list-heading {
+      color: white;
+      margin-top: 30px;
+    }
+
+    .st-contacts-list-data {
+      margin-top: 40px;
+      .st-contacts-list-data-heading {
+        color: white;
+        margin-top: 65px;
+      }
+
+      .st-user-detail-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        .st-user-profile-image {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: white;
+        }
+
+        .st-user-profile-name {
+          color: white;
+          font-size: 14px;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .st-chat-section-main-container {
+    width: 800px;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.809);
+
+    .st-chat-section-header {
+      margin-top: 30px;
+      padding: 0px 20px 20px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.346);
+
+      .st-chat-section-heading {
+        color: white;
+      }
+
+      .st-chat-section-menu-options-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        i {
+          margin: 0px 10px;
+        }
+      }
+    }
+  }
+}
