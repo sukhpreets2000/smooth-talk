@@ -20,7 +20,6 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
-        const origin = c.req.header("Origin")
 
         const user = await getUser({ email });
         if (user === null) {
@@ -37,7 +36,7 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect(origin+'/');
+        return c.json({ message: "success", user, session })
     }
 );
 
@@ -52,7 +51,6 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
-        const origin = c.req.header("Origin")
 
         const existingUser = await getUser({ email });
         if (existingUser) {
@@ -78,7 +76,7 @@ authRouter.post(
 
         c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-        return c.redirect(origin+'/');
+        return c.json({ message: "success" });
     }
 );
 
@@ -93,7 +91,7 @@ authRouter.post('/logout', async (c) => {
 
     c.header('Set-Cookie', cookie.serialize(), { append: true });
 
-    return c.redirect(origin+'/');
+    return c.json({ message: "success" });
 });
 
 authRouter.get("/me", (c) => {
@@ -101,7 +99,7 @@ authRouter.get("/me", (c) => {
     const user = c.get('user')
 
     if (!session || !user) {
-        return c.redirect('/login')
+        return c.json({ message: "fail", user: null, session: null })
     }
 
     return c.json({ message: "success", user, session })
