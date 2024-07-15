@@ -5,11 +5,10 @@ import { PasswordConditionsHelperComponent } from './password-conditions-helper/
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PasswordConditionsHelperComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'angular';
-  testPassword: string = 'YourTestPassword123!';
 }

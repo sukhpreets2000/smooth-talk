@@ -56,10 +56,16 @@
                             <label class="w-full" htmlFor="password">password</label>
                             <p class="w-full text-end cursor-pointer">Forgot Password?</p>
                         </div>
-                        <input placeholder="password" type="password" id="password"
-                            class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                        <!-- login.component.html -->
+                        <input [(ngModel)]="passwordValue" #password placeholder="password" type="password"
+                            id="password" class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+
+
+                        <div>
+                            <app-password-conditions-helper [password]="testPassword"></app-password-conditions-helper>
+                        </div>
                     </div>
-                    <button
+                    <button (click)="getPassword(password.value)"
                         class="w-full my-3 bg-[#593211] text-white font-semibold hover:bg-[#a9753d] duration-300 px-4 py-3 rounded-md">Sign
                         In</button>
                     <div class="text-center my-4">

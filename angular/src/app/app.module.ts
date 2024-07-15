@@ -8,7 +8,7 @@ import { PasswordConditionsHelperComponent } from './password-conditions-helper/
   declarations: [AppComponent, PasswordConditionComponent, PasswordConditionsHelperComponent],
   imports: [
     CommonModule,
-    BrowserModule
+    BrowserModule,
   ],
   bootstrap: [AppComponent],
   schemas: []
