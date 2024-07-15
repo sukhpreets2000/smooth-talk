@@ -20,6 +20,7 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
+        const origin = c.req.header("Origin")
 
         const user = await getUser({ email });
         if (user === null) {
@@ -51,6 +52,7 @@ authRouter.post(
     ),
     async (c) => {
         const { email, password } = await c.req.valid('form');
+        const origin = c.req.header("Origin")
 
         const existingUser = await getUser({ email });
         if (existingUser) {
