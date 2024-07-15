@@ -8,7 +8,7 @@ import { Context } from "./context.ts";
 
 const app = new Hono<Context>().basePath('/api')
 
-app.use('*', cors({ origin: '*' }))
+app.use('*', cors({ origin: '*', credentials: true }));
 app.use("*", async (c, next) => {
   const sessionId = lucia.readSessionCookie(c.req.header("Cookie") ?? "");
   if (!sessionId) {

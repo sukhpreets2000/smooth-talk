@@ -10,6 +10,7 @@
   },
   "tasks": {
     "start": "deno serve --port 8787 ./src/main.ts",
+    "debug": "deno serve --inspect-wait -A --port 8787 ./src/main.ts",
     "setup": "deno cache --node-modules-dir npm:drizzle-orm npm:drizzle-kit npm:drizzle-orm/sqlite-core npm:@libsql/client npm:lucia",
     "db:generate": "deno run -A npm:drizzle-kit generate",
     "db:migrate": "deno run -A npm:drizzle-kit migrate",
