@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import bgImg from "../../public/bgImg.jpg";
 import { useState } from "react";
-import { API_BASE_URL } from "../utils/Constants";
 
 const SignInPage = () => {
-
     const [inputfield, setInputField] = useState<{
         email: string,
         password: string
@@ -22,30 +20,20 @@ const SignInPage = () => {
             }
         })
     }
+
     const FormHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(inputfield)
         const formData = new FormData();
         formData.append("email", inputfield.email),
-            formData.append("password", inputfield.password)
+        formData.append("password", inputfield.password)
 
-        // fetch("http://192.168.1.3:8787/api/auth/signup", {
-        //     method: "POST",
-        //     body: formData
-        // }).then((res) => {
-        //     console.log(res)
-        // })
-
-        fetch(API_BASE_URL + "/auth/login", {
+        fetch(`/api/auth/login`, {
             method: "POST",
             body: formData
         }).then((res) => {
             console.log(res)
         })
-
-        // fetch("http://192.168.1.3:8787/api/auth/me",{
-        //     // credentials:"include"
-        // }).then((res)=>res.json()).then(result=>console.log("result",result))
     }
 
     return (

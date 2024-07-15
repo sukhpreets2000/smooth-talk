@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import bgImg from "../../public/bgImg.jpg";
 import PasswordConditionsHelper from "../validation/PasswordConditionsHelper";
 import { useState } from "react";
-import { API_BASE_URL } from "../utils/Constants";
 const SignUpPage = () => {
+    const [valid, setValid] = useState(false)
 
     const [inputfield, setInputField] = useState<{
         email: string,
@@ -14,6 +14,7 @@ const SignUpPage = () => {
     })
 
     const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setValid(true)
         const { name, value } = e.target
         setInputField((preval) => {
             return {
@@ -28,18 +29,14 @@ const SignUpPage = () => {
         console.log(inputfield)
         const formData = new FormData();
         formData.append("email", inputfield.email),
-        formData.append("password", inputfield.password)
+            formData.append("password", inputfield.password)
 
-        // fetch(`${API_BASE_URL}/auth/signup`, {
-        //     method: "POST",
-        //     body: formData
-        // }).then((res) => {
-        //     console.log(res)
-        // })
-
-        fetch(`${API_BASE_URL}/auth/me`).then((res) => {
-            return res.json()
-        }).then((data) => console.log(data))
+        fetch(`api/auth/signup`, {
+            method: "POST",
+            body: formData
+        }).then((res) => {
+            console.log(res)
+        })
 
     }
 
@@ -77,14 +74,16 @@ const SignUpPage = () => {
                                     <label className="w-full" htmlFor="password">password</label>
                                     <p className="w-full text-end cursor-pointer">Forgot Password?</p>
                                 </div>
-                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} />
+                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} onFocus={() => setValid(true)} />
                             </div>
                             <button className="w-full my-3 bg-[#72e3ad] hover:bg-[#62c897] duration-300 px-4 py-3 rounded-md">Sign Up</button>
                             <div className="text-center my-4">
                                 <Link to="/signin" className="text-slate-400 hover:text-slate-600 duration-300">Have an account? <span>Sign In Now</span></Link>
                             </div>
                         </form>
-                        <PasswordConditionsHelper password={inputfield.password} />
+                        {
+                            valid ? <PasswordConditionsHelper password={inputfield.password} /> : null
+                        }
                     </div>
                 </div>
             </div>
