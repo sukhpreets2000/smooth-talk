@@ -24,7 +24,7 @@
 <div class="w-full h-screen bg-b flex items-center justify-center">
     <div class="container mx-auto border-2 border-slate-50 rounded-xl my-10 overflow-clip">
         <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-            <div class="overflow-clip rounded-md h-full w-full box1">
+            <div class="hidden md:flex sticky top-4 h-[calc(100svh-2*var(--top-padding))] flex-1 box1">
                 <!-- <img class="object-cover bg-center" src="../../../assets/images/smooth_talk_dp.jpg" /> -->
             </div>
             <div class="bg-white rounded-xl p-14">
@@ -45,10 +45,10 @@
                         <span class="px-2 bg-white">or</span>
                     </div>
                 </div>
-                <form>
+                <form [formGroup]="profileForm">
                     <div class="my-2">
                         <label class="w-full" htmlFor="email">Email</label>
-                        <input placeholder="you@example.com" id="email"
+                        <input placeholder="you@example.com" id="email" formControlName="email"
                             class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
                     </div>
                     <div class="my-2">
@@ -57,13 +57,14 @@
                             <p class="w-full text-end cursor-pointer">Forgot Password?</p>
                         </div>
                         <!-- login.component.html -->
-                        <input [(ngModel)]="passwordValue" #password placeholder="password" type="password"
-                            id="password" class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
+                        <input (focus)="onFocus($event)" formControlName="password" #password placeholder="password"
+                            type="password" id="password"
+                            class="w-full px-4 py-2 border-[1px] rounded focus:outline-none mt-2" />
 
 
-                        <div>
-                            <app-password-conditions-helper [password]="testPassword"></app-password-conditions-helper>
-                        </div>
+                        @if(inputFocused === true){
+                        <app-password-conditions-helper [password]="testPassword"></app-password-conditions-helper>
+                        }
                     </div>
                     <button (click)="getPassword(password.value)"
                         class="w-full my-3 bg-[#593211] text-white font-semibold hover:bg-[#a9753d] duration-300 px-4 py-3 rounded-md">Sign
