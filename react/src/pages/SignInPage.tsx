@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import bgImg from "../../public/bgImg.jpg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { postData } from "../services/ApiService";
 
 const SignInPage = () => {
@@ -12,6 +12,17 @@ const SignInPage = () => {
         password: ""
     })
 
+    const [errormsg, setErrorMsg] = useState<{
+        email: string,
+        password: string
+    }>({
+        email: "",
+        password: ""
+    })
+
+    const emailRef: React.LegacyRef<HTMLInputElement> = useRef(null)
+    const passwordRef: React.LegacyRef<HTMLInputElement> = useRef(null)
+
     const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
         setInputField((preval) => {
@@ -20,22 +31,68 @@ const SignInPage = () => {
                 [name]: value,
             }
         })
+
+        if (name === "email") {
+            validateEmail(value);
+        }
+
+        if (name === "password") {
+            validatePassword(value);
+        }
     }
+
+
+    const validateEmail = (email: string) => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (email === "") {
+            setErrorMsg((preval) => ({
+                ...preval,
+                email: "Email is required"
+            }));
+            emailRef.current!.style.border = "1px solid red"
+        } else if (!emailPattern.test(email)) {
+            setErrorMsg((preval) => ({
+                ...preval,
+                email: "Invalid email format"
+            }));
+            emailRef.current!.style.border = "1px solid red"
+        } else {
+            setErrorMsg((preval) => ({
+                ...preval,
+                email: ""
+            }));
+            emailRef.current!.style.border = "1px solid grey"
+        }
+    };
+
+    const validatePassword = (password: string) => {
+        if (password === "") {
+            setErrorMsg((preval) => ({
+                ...preval,
+                password: "Password is required"
+            }));
+            passwordRef.current!.style.border = "1px solid red"
+        }
+        else {
+            setErrorMsg((preval) => ({
+                ...preval,
+                password: ""
+            }))
+            passwordRef.current!.style.border = "1px solid grey"
+        }
+    };
 
     const FormHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        validateEmail(inputfield.email);
+        validatePassword(inputfield.password)
         console.log(inputfield)
         const formData = new FormData();
-        formData.append("email", inputfield.email),
-            formData.append("password", inputfield.password)
-        postData("/api/auth/login", formData)
+        formData.append("email", inputfield.email)
+        formData.append("password", inputfield.password)
 
-        // fetch(`/api/auth/login`, {
-        //     method: "POST",
-        //     body: formData
-        // }).then((res) => {
-        //     console.log(res)
-        // })
+        // postData("/api/auth/login", formData)
+
     }
 
     return (
@@ -65,14 +122,16 @@ const SignInPage = () => {
                         <form onSubmit={FormHandler}>
                             <div className="my-2">
                                 <label className="w-full" htmlFor="email">Email</label>
-                                <input placeholder="you@example.com" id="email" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="email" onChange={InputHandler} value={inputfield.email} />
+                                <input placeholder="you@example.com" id="email" className="w-full px-4 py-3 border-slate-600 border-[1px] rounded focus:outline-none mt-2" name="email" onChange={InputHandler} value={inputfield.email} ref={emailRef} />
+                                <p className="text-[13px] text-red-500">{errormsg.email}</p>
                             </div>
                             <div className="my-2">
                                 <div className="flex items-center justify-end">
                                     <label className="w-full" htmlFor="password">password</label>
                                     <p className="w-full text-end cursor-pointer">Forgot Password?</p>
                                 </div>
-                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} />
+                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2 border-slate-600" name="password" onChange={InputHandler} value={inputfield.password} ref={passwordRef}/>
+                                <p className="text-[13px] text-red-500">{errormsg.password}</p>
                             </div>
                             <button className="w-full my-3 bg-[#72e3ad] hover:bg-[#62c897] duration-300 px-4 py-3 rounded-md">Sign In</button>
                             <div className="text-center my-4">

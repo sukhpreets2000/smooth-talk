@@ -3,5 +3,15 @@
 @tailwind utilities;
 
 :root {
-    --top-padding: 16px;
-  }
+  --top-padding: 16px;
+}
+
+/* svg {
+  color: #72e3ad;
+}
+
+path {
+  fill: #72e3ad;
+  stroke: black;
+  stroke-width: 1;
+} */

@@ -59,7 +59,7 @@ const PasswordCondition = ({ title, isMet }: PasswordConditionProps) => {
                     className="w-4 h-4"
                 >
                     <path
-                        stroke-linecap="round"
+                        strokeLinecap="round"
                         stroke-linejoin="round"
                         d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
                     />

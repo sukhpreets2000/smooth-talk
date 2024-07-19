@@ -67,14 +67,14 @@ const SignUpPage = () => {
                         <form onSubmit={FormHandler}>
                             <div className="my-2">
                                 <label className="w-full" htmlFor="email">Email</label>
-                                <input placeholder="you@example.com" id="email" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="email" onChange={InputHandler} value={inputfield.email} />
+                                <input placeholder="you@example.com" id="email" className="w-full px-4 py-3 border-slate-600 border-[1px] rounded focus:outline-none mt-2" name="email" onChange={InputHandler} value={inputfield.email} />
                             </div>
                             <div className="my-2">
                                 <div className="flex items-center justify-end">
                                     <label className="w-full" htmlFor="password">password</label>
                                     <p className="w-full text-end cursor-pointer">Forgot Password?</p>
                                 </div>
-                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} onFocus={() => setValid(true)} />
+                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-slate-600 border-[1px] rounded focus:outline-none mt-2" name="password" onChange={InputHandler} value={inputfield.password} onFocus={() => setValid(true)} />
                             </div>
                             <button className="w-full my-3 bg-[#72e3ad] hover:bg-[#62c897] duration-300 px-4 py-3 rounded-md">Sign Up</button>
                             <div className="text-center my-4">
