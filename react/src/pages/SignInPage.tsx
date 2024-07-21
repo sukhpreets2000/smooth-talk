@@ -91,7 +91,7 @@ const SignInPage = () => {
         formData.append("email", inputfield.email)
         formData.append("password", inputfield.password)
 
-        // postData("/api/auth/login", formData)
+        postData("/api/auth/login", formData)
 
     }
 
