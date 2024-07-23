@@ -20,6 +20,8 @@ const SignInPage = () => {
         password: ""
     })
 
+    const [formSubmitted, setFormSubmitted] = useState<Boolean>(false)
+
     const emailRef: React.LegacyRef<HTMLInputElement> = useRef(null)
     const passwordRef: React.LegacyRef<HTMLInputElement> = useRef(null)
 
@@ -86,12 +88,18 @@ const SignInPage = () => {
         e.preventDefault();
         validateEmail(inputfield.email);
         validatePassword(inputfield.password)
-        console.log(inputfield)
-        const formData = new FormData();
-        formData.append("email", inputfield.email)
-        formData.append("password", inputfield.password)
 
-        postData("/api/auth/login", formData)
+        if (errormsg.email === "" && errormsg.password === "") {
+            setFormSubmitted(true)
+            console.log(inputfield)
+            const formData = new FormData();
+            formData.append("email", inputfield.email)
+            formData.append("password", inputfield.password)
+
+            formSubmitted ? postData("/api/auth/login", formData) : null
+        } else {
+            console.log("cant procide api call")
+        }
 
     }
 
@@ -130,7 +138,7 @@ const SignInPage = () => {
                                     <label className="w-full" htmlFor="password">password</label>
                                     <p className="w-full text-end cursor-pointer">Forgot Password?</p>
                                 </div>
-                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2 border-slate-600" name="password" onChange={InputHandler} value={inputfield.password} ref={passwordRef}/>
+                                <input placeholder="password" type="password" id="password" className="w-full px-4 py-3 border-[1px] rounded focus:outline-none mt-2 border-slate-600" name="password" onChange={InputHandler} value={inputfield.password} ref={passwordRef} />
                                 <p className="text-[13px] text-red-500">{errormsg.password}</p>
                             </div>
                             <button className="w-full my-3 bg-[#72e3ad] hover:bg-[#62c897] duration-300 px-4 py-3 rounded-md">Sign In</button>

@@ -1,5 +1,5 @@
 export type PasswordConditionsHelperProps = {
-    password: string
+    password: string,
 }
 
 const PasswordConditionsHelper = ({ password }: PasswordConditionsHelperProps) => {
@@ -60,7 +60,7 @@ const PasswordCondition = ({ title, isMet }: PasswordConditionProps) => {
                 >
                     <path
                         strokeLinecap="round"
-                        stroke-linejoin="round"
+                        strokeLinejoin="round"
                         d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"
                     />
                 </svg>
