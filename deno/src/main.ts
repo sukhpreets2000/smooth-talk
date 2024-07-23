@@ -6,9 +6,9 @@ import authRoute from "./routes/auth.routes.ts";
 import { lucia } from "./db/lib/auth.ts";
 import { Context } from "./context.ts";
 
-const app = new Hono<Context>().basePath('/api')
+const app = new Hono<Context>()
 
-app.use('*', cors({ origin: '*' }))
+app.use('*', cors({ origin: '*', credentials: true }));
 app.use("*", async (c, next) => {
   const sessionId = lucia.readSessionCookie(c.req.header("Cookie") ?? "");
   if (!sessionId) {
@@ -29,12 +29,12 @@ app.use("*", async (c, next) => {
   return next();
 });
 
-app.get('/', (c) => {
+const routes = app.basePath("/api").get('/', (c) => {
   return c.text('Hello Hono!')
 })
-
 app.route('/user', usersRoute)
 app.route("/auth", authRoute)
 
 
+export type App = typeof routes & typeof usersRoute & typeof authRoute
 export default app
